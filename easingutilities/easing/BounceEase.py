@@ -7,11 +7,10 @@ from easingutilities.easing.AbstractEase import AbstractEase
 # Ported from: https://github.com/warrenm/AHEasing/tree/master/AHEasing
 
 class BounceEase(AbstractEase):
-    # Stolen from: https://gist.github.com/th0ma5w/9883420
 
     @classmethod
     def calculate_next_step(cls, current_step, start_value, change_in_value, number_of_steps):
-        position = LinearEase.calculate_next_step(current_step, start_value, change_in_value, number_of_steps) - 1
+        position = LinearEase.calculate_next_step(current_step, start_value, change_in_value, number_of_steps)
         return cls.bounce_ease_in_out(position)
 
     @classmethod

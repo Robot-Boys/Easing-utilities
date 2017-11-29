@@ -3,6 +3,7 @@
 # see: https://docs.python.org/3/c-api/iter.html
 from enum import Enum
 
+from easingutilities.easing.BounceEase import BounceEase
 from easingutilities.easing.CircularEase import CircularEase
 from easingutilities.easing.CubicEase import CubicEase
 from easingutilities.easing.ExponentialEase import ExponentialEase
@@ -24,6 +25,7 @@ class EasingType(Enum):
     QUINTIC = 5
     EXPONENTIAL = 6
     CIRCULAR = 7
+    BOUNCE = 8
 
 
 class EasingController(object):
@@ -62,7 +64,7 @@ class EasingController(object):
         self._current_step += 1
         if self._current_step > self._iterations:
             raise StopIteration
-        ease_factor = self.easing.calculate_next_step(self._current_step, 0, 1, self._iterations)
+        ease_factor = self.easing.calculate_next_step(self._current_step, 1, 1, self._iterations)
         ease_move = ease_factor * self._distance_to_travel
         return self._start_position + ease_move * self._move_direction
 
@@ -83,7 +85,6 @@ class EasingController(object):
         if self._goal is None:
             raise ControllerNotConfiguredException("You should provide a goal before using this")
 
-    @staticmethod
     def choose_easing(self, movement_type):
         if movement_type is EasingType.LINEAR:
             return LinearEase()
@@ -101,5 +102,7 @@ class EasingController(object):
             return ExponentialEase()
         elif movement_type is EasingType.CIRCULAR:
             return CircularEase()
+        elif movement_type is EasingType.BOUNCE:
+            return BounceEase()
         else:
             raise WrongMovementException("The movement type specified does not exist")
