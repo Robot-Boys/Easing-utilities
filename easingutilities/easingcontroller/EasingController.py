@@ -42,8 +42,8 @@ class EasingController(object):
 
     def __iter__(self):
         self.check_if_ready()
-        self._current_step = 0
-        self._start_position = self._motor.present_position
+        self._current_step = 0  # reset
+        self._start_position = self._motor.present_position  # record start position
         self._distance_to_travel = self.calculate_distance(self._motor.present_position, self._goal)
         return self
 

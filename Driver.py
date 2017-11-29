@@ -4,6 +4,10 @@ import time
 from config.MotorTester import MotorTester
 from easingutilities.easing.BackEase import BackEase
 from easingutilities.easing.BounceEase import BounceEase
+from easingutilities.easing.BounceEaseIn import BounceEaseIn
+from easingutilities.easing.BounceEaseOut import BounceEaseOut
+from easingutilities.easing.CircularBounceEase import CircularBounceEase
+from easingutilities.easing.CircularEaseOut import CircularEaseOut
 from easingutilities.easing.ElasticEase import ElasticEase
 from easingutilities.easing.ElasticEaseIn import ElasticEaseIn
 from easingutilities.easing.ElasticEaseOut import ElasticEaseOut
@@ -22,7 +26,7 @@ class Driver(object):
     # Shows output without running motors
     def dry_run(self):
         motor = self.robot.m4
-        controller = EasingController(motor, BackEase())
+        controller = EasingController(motor, BounceEase())
 
         controller.goal = 50
         for move in controller:
@@ -32,14 +36,14 @@ class Driver(object):
     def move_first(self):
 
         motor = self.robot.m4
-        controller = EasingController(motor, BackEase(), 2000)
+        controller = EasingController(motor, CircularBounceEase(), 10000)
 
         controller.goal = -50
         i = 1
         for move in controller:
             i += 1
             motor.goal_position = move
-            time.sleep(0.002)
+            time.sleep(0.0002)
         else:
             print("Move done")
 
@@ -49,7 +53,7 @@ class Driver(object):
 
         for move in controller:
             motor.goal_position = move
-            time.sleep(0.002)
+            time.sleep(0.0002)
         else:
             print("Move done")
 
