@@ -3,7 +3,7 @@ import math
 from easingutilities.easing.AbstractEase import AbstractEase
 
 
-class SinEase(AbstractEase):
+class SinusoidalEase(AbstractEase):
     @classmethod
     def calculate_next_step(self, current_step, start_value, change_in_value, number_of_steps):
         return self.ease(current_step, start_value, change_in_value, number_of_steps)

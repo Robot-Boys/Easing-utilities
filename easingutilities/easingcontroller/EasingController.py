@@ -3,23 +3,34 @@
 # see: https://docs.python.org/3/c-api/iter.html
 from enum import Enum
 
+from easingutilities.easing.CircularEase import CircularEase
 from easingutilities.easing.CubicEase import CubicEase
+from easingutilities.easing.ExponentialEase import ExponentialEase
 from easingutilities.easing.LinearEase import LinearEase
-from easingutilities.easing.SinEase import SinEase
+from easingutilities.easing.QuadraticEase import QuadraticEase
+from easingutilities.easing.QuarticEase import QuarticEase
+from easingutilities.easing.QuinticEase import QuinticEase
+from easingutilities.easing.SinusoidalEase import SinusoidalEase
 from easingutilities.exceptions.ControllerNotConfiguredException import ControllerNotConfiguredException
 from easingutilities.exceptions.WrongMovementException import WrongMovementException
 
 
 class EasingType(Enum):
     LINEAR = 0
-    SIN = 1
+    SINE = 1
     CUBIC = 2
+    QUADRATIC = 3
+    QUARTIC = 4
+    QUINTIC = 5
+    EXPONENTIAL = 6
+    CIRCULAR = 7
+
 
 class EasingController(object):
     def __init__(self, motor, movement_type=EasingType.LINEAR, iterations=2000):
         self._motor = motor
         self._iterations = iterations
-        self.easing = self.get_easing(movement_type)
+        self.easing = self.choose_easing(movement_type)
         self._goal = None
         self._move_direction = None
 
@@ -72,20 +83,23 @@ class EasingController(object):
         if self._goal is None:
             raise ControllerNotConfiguredException("You should provide a goal before using this")
 
-    def get_easing(self, movement_type):
+    @staticmethod
+    def choose_easing(self, movement_type):
         if movement_type is EasingType.LINEAR:
-            print("yo linear")
             return LinearEase()
-        elif movement_type is EasingType.SIN:
-            print("yo sin")
-            return SinEase()
+        elif movement_type is EasingType.SINE:
+            return SinusoidalEase()
         elif movement_type is EasingType.CUBIC:
-            print("yo cubic")
             return CubicEase()
+        elif movement_type is EasingType.QUADRATIC:
+            return QuadraticEase()
+        elif movement_type is EasingType.QUARTIC:
+            return QuarticEase()
+        elif movement_type is EasingType.QUINTIC:
+            return QuinticEase()
+        elif movement_type is EasingType.EXPONENTIAL:
+            return ExponentialEase()
+        elif movement_type is EasingType.CIRCULAR:
+            return CircularEase()
         else:
             raise WrongMovementException("The movement type specified does not exist")
-
-
-
-
-
