@@ -8,3 +8,5 @@ pyserial==3.4
 scipy==1.0.0
 sympy==1.1.1
 tornado==4.5.2
+PyTweening==1.0.3
+

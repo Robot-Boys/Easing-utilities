@@ -10,9 +10,18 @@ class EasingController(object):
     def __init__(self, motor, movement_type=LinearEase(), iterations=2000):
         self._motor = motor
         self._iterations = iterations
-        self.easing = movement_type
+        self._easing_type = movement_type
         self._goal = None
         self._move_direction = None
+
+    @property
+    def easing_type(self):
+        return self._easing_type
+
+    @easing_type.setter
+    def easing_type(self, easing_type):
+        print("WARNING CHANGING MOVEMENT TYPE")
+        self._easing_type = easing_type
 
     @property
     def goal(self):
@@ -42,7 +51,7 @@ class EasingController(object):
         self._current_step += 1
         if self._current_step > self._iterations:
             raise StopIteration
-        ease_factor = self.easing.calculate_next_step(self._current_step, 1, 1, self._iterations)
+        ease_factor = self._easing_type.calculate_next_step(self._current_step, 1, 1, self._iterations)
         ease_move = ease_factor * self._distance_to_travel
         return self._start_position + ease_move * self._move_direction
 
