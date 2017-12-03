@@ -1,16 +1,9 @@
 # Very simple driver to test EasingController emulated the behasvior of a primitive
 import time
 
-from config.MotorTester import MotorTester
-from easingutilities.easing.BackEase import BackEase
+from demo.config.MotorTester import MotorTester
 from easingutilities.easing.BounceEase import BounceEase
-from easingutilities.easing.BounceEaseIn import BounceEaseIn
-from easingutilities.easing.BounceEaseOut import BounceEaseOut
 from easingutilities.easing.CircularBounceEase import CircularBounceEase
-from easingutilities.easing.CircularEaseOut import CircularEaseOut
-from easingutilities.easing.ElasticEase import ElasticEase
-from easingutilities.easing.ElasticEaseIn import ElasticEaseIn
-from easingutilities.easing.ElasticEaseOut import ElasticEaseOut
 from easingutilities.easingcontroller.EasingController import EasingController
 
 
