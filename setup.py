@@ -3,7 +3,7 @@ from distutils.core import setup
 #note to self: see http://peterdowns.com/posts/first-time-with-pypi.html for setup
 
 setup(
-  name = 'mypackage',
+  name = 'easingutilities',
   packages = ['mypackage'], # this must be the same as the name above
   version = '0.1',
   description = 'A controller for controlling Dynamixel motors with easing algorithms through pypot',
