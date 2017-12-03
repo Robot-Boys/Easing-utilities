@@ -4,7 +4,7 @@ from distutils.core import setup
 
 setup(
   name = 'easingutilities',
-  packages = ['mypackage'], # this must be the same as the name above
+  packages = ['easingutilities'], # this must be the same as the name above
   version = '0.1',
   description = 'A controller for controlling Dynamixel motors with easing algorithms through pypot',
   author = 'Graunephar',
