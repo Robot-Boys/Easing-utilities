@@ -3,7 +3,9 @@ import time
 
 from demo.config.MotorTester import MotorTester
 from easingutilities.easing.BounceEase import BounceEase
+from easingutilities.easing.BounceEaseOut import BounceEaseOut
 from easingutilities.easing.CircularBounceEase import CircularBounceEase
+from easingutilities.easing.LinearEase import LinearEase
 from easingutilities.easingcontroller.EasingController import EasingController
 
 
@@ -28,19 +30,17 @@ class Driver(object):
 
     def move_first(self):
 
-        motor = self.robot.m4
-        controller = EasingController(motor, CircularBounceEase(), 10000)
+        motor = self.robot.m5
+        controller = EasingController(motor, LinearEase(), 5000)
 
         controller.goal = -50
-        i = 1
         for move in controller:
-            i += 1
             motor.goal_position = move
             time.sleep(0.0002)
         else:
             print("Move done")
 
-        controller.goal = 50
+        controller.goal = -70
 
         time.sleep(2)
 

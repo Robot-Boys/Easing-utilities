@@ -25,7 +25,7 @@ class MotorTester(object):
             'controllers': {
                 'my_dxl_controller': {
                     'sync_read': False,
-                    'attached_motors': ['base'],
+                    'attached_motors': ['m5', 'm4'],
                     'port': self.port
                 }
             },
