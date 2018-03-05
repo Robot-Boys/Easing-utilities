@@ -1,7 +1,8 @@
 # Very simple driver to test EasingController emulated the behasvior of a primitive
 import time
 
-from demo.config.MotorTester import MotorTester
+from easingutilities.easing.LinearEase import LinearEase
+from example.config.MotorTester import MotorTester
 from easingutilities.easing.BounceEase import BounceEase
 from easingutilities.easing.CircularBounceEase import CircularBounceEase
 from easingutilities.easingcontroller.EasingController import EasingController
@@ -21,26 +22,26 @@ class Driver(object):
         motor = self.robot.m4
         controller = EasingController(motor, BounceEase())
 
-        controller.goal = 50
+        controller.goal = 0
         for move in controller:
             print(move)
             time.sleep(0.002)
+        print("Done")
 
     def move_first(self):
 
         motor = self.robot.m4
-        controller = EasingController(motor, CircularBounceEase(), 10000)
+        controller = EasingController(motor, LinearEase(), 5000)
 
         controller.goal = -50
-        i = 1
+
         for move in controller:
-            i += 1
             motor.goal_position = move
             time.sleep(0.0002)
         else:
             print("Move done")
 
-        controller.goal = 50
+        controller.goal = -70
 
         time.sleep(2)
 
@@ -80,7 +81,7 @@ class Driver(object):
         for motor in self.robot.motors:
             key = motor.name
             controller = EasingController(motor)
-            controller.goal = 70
+            controller.goal = 50
             controller.__iter__()
             res[key] = controller
 
