@@ -12,7 +12,7 @@ setup(
     author='Graunephar',
     author_email='daniel@graungaard.com',
     url='https://github.com/Robot-Boys/Easing-utilities',  # use the URL to the github repo
-    download_url='https://github.com/Robot-Boys/Easing-utilities/archive/1.1.tar.gz',  # Link created via github tag
+    download_url='https://github.com/Robot-Boys/Easing-utilities/archive/1.2.tar.gz',  # Link created via github tag
     keywords=['Dynamixel', 'Easing', 'Motor'],
     classifiers=[
         # How mature is this project? Common values are
