@@ -36,8 +36,6 @@ class EasingController(object):
         else:
             self._goal = goal
 
-        self._move_direction = self.calculate_move_direction(self._goal)
-
         print("Goal set to: ", self._goal)
 
     def __iter__(self):
@@ -45,6 +43,8 @@ class EasingController(object):
         self._current_step = 0  # reset
         self._start_position = self._motor.present_position  # record start position
         self._distance_to_travel = self.calculate_distance(self._motor.present_position, self._goal)
+        self._move_direction = self.calculate_move_direction(self._goal)
+
         return self
 
     def __next__(self):
@@ -61,9 +61,10 @@ class EasingController(object):
         # According to stack overflow this works:
         # https://stackoverflow.com/questions/13602170/how-do-i-find-the-difference-between-two-values-without-knowing-which-is-larger
 
-    @staticmethod
-    def calculate_move_direction(goal):
-        if goal < 0:
+
+    def calculate_move_direction(self, goal):
+
+        if goal < self._start_position:
             return -1
         else:
             return 1
