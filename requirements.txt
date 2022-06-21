@@ -1,7 +1,7 @@
 bottle==0.12.13
 ikpy==2.2.3
 mpmath==1.0.0
-numpy==1.13.3
+numpy==1.22.0
 poppy-creature==2.0.0
 pypot==3.0.3
 pyserial==3.4
